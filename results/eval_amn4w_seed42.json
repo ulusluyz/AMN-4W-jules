@@ -1,0 +1,83 @@
+{
+  "train_eval": {
+    "accuracy": 0.16666666666666666,
+    "details": [
+      {
+        "question": "Aliin kalemi ne renk?",
+        "expected": "mavi",
+        "predicted": "e? kapen",
+        "correct": false
+      },
+      {
+        "question": "Ali nerede?",
+        "expected": "ev",
+        "predicted": "ev",
+        "correct": true
+      },
+      {
+        "question": "Aliin kalemi ne renk?",
+        "expected": "kırmızı",
+        "predicted": "kapeinkı",
+        "correct": false
+      },
+      {
+        "question": "Ali nerede?",
+        "expected": "ev",
+        "predicted": "er.emıdi",
+        "correct": false
+      },
+      {
+        "question": "Ayşein kalemi ne renk?",
+        "expected": "kırmızı",
+        "predicted": "Ali Ayem",
+        "correct": false
+      },
+      {
+        "question": "Ayşe nerede?",
+        "expected": "ev",
+        "predicted": "edined k",
+        "correct": false
+      }
+    ]
+  },
+  "new_knowledge": {
+    "accuracy": 0.0,
+    "details": [
+      {
+        "question": "Aliin kalemi ne renk?",
+        "expected": "kırmızı",
+        "predicted": "kapeinkı",
+        "correct": false
+      },
+      {
+        "question": "Ali nerede?",
+        "expected": "ev",
+        "predicted": "er.emıdi",
+        "correct": false
+      },
+      {
+        "question": "Ayşein kalemi ne renk?",
+        "expected": "mavi",
+        "predicted": "kali Aye",
+        "correct": false
+      },
+      {
+        "question": "Ayşe nerede?",
+        "expected": "okul",
+        "predicted": "einedi S",
+        "correct": false
+      }
+    ]
+  },
+  "update": {
+    "accuracy": 0.0,
+    "details": [
+      {
+        "question": "Aliin kalemi ne renk?",
+        "expected": "sarı",
+        "predicted": "evaledii",
+        "correct": false
+      }
+    ]
+  }
+}
