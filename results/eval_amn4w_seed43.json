@@ -1,11 +1,11 @@
 {
   "train_eval": {
-    "accuracy": 0.5,
+    "accuracy": 0.3333333333333333,
     "details": [
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "mavi",
-        "predicted": "Cyşe? e?",
+        "predicted": "nkaliink",
         "correct": false
       },
       {
@@ -17,26 +17,26 @@
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "kırmızı",
-        "predicted": "e? Ali A",
+        "predicted": "neinkali",
         "correct": false
       },
       {
         "question": "Ali nerede?",
         "expected": "ev",
-        "predicted": "evdemız",
+        "predicted": "evdi AAl",
         "correct": true
       },
       {
         "question": "Ayşein kalemi ne renk?",
         "expected": "kırmızı",
-        "predicted": "e? Cedir",
+        "predicted": "ne Ayşed",
         "correct": false
       },
       {
         "question": "Ayşe nerede?",
         "expected": "ev",
-        "predicted": "Cemi Cev",
-        "correct": true
+        "predicted": "ne? kıe?",
+        "correct": false
       }
     ]
   },
@@ -46,25 +46,25 @@
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "kırmızı",
-        "predicted": "e? Ali A",
+        "predicted": "neinkali",
         "correct": false
       },
       {
         "question": "Ali nerede?",
         "expected": "ev",
-        "predicted": "evdemız",
+        "predicted": "evdi AAl",
         "correct": true
       },
       {
         "question": "Ayşein kalemi ne renk?",
         "expected": "mavi",
-        "predicted": "ev",
+        "predicted": "Ayşe n m",
         "correct": false
       },
       {
         "question": "Ayşe nerede?",
         "expected": "okul",
-        "predicted": "evalenk?",
+        "predicted": "ne Aedi",
         "correct": false
       }
     ]
@@ -75,7 +75,7 @@
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "sarı",
-        "predicted": "e? evded",
+        "predicted": "Alidi Al",
         "correct": false
       }
     ]

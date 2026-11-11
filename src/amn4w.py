@@ -4,8 +4,8 @@ import torch.nn.functional as F
 
 class AMN4W(nn.Module):
     """
-    Independent AMN-4W Architecture with dynamic relational memory.
-    S(t+1) = gamma(t)S(t) + eta(t)[v(t) - S(t)k(t)]k(t)^T
+    Independent AMN-4W Architecture with directional dynamic relational memory.
+    S(t+1) = S(t) + [eta(t)v(t) - gamma(t)S(t)k(t)]k(t)^T
     """
     def __init__(self, vocab_size, embed_dim, memory_size, max_seq_len):
         super(AMN4W, self).__init__()
@@ -44,9 +44,9 @@ class AMN4W(nn.Module):
             k_t = self.fc_k(xt)
             v_t = self.fc_v(xt)
 
-            # Normalizing keys and values for memory stability
-            k_t = F.normalize(k_t, p=2, dim=-1)
-            v_t = F.normalize(v_t, p=2, dim=-1)
+            # Normalizing keys and values for memory stability (with epsilon for safety)
+            k_t = k_t / (torch.norm(k_t, p=2, dim=-1, keepdim=True) + 1e-8)
+            v_t = v_t / (torch.norm(v_t, p=2, dim=-1, keepdim=True) + 1e-8)
 
             # Gating mechanisms bounded between 0 and 1
             eta_t = torch.sigmoid(self.fc_eta(xt))
@@ -55,18 +55,16 @@ class AMN4W(nn.Module):
             # Reading for update step: S(t)k(t)
             S_k = torch.bmm(memory_state, k_t.unsqueeze(-1)).squeeze(-1)
 
-            # Diff: v(t) - S(t)k(t)
-            diff = v_t - S_k
-
-            # Update term: [v(t) - S(t)k(t)]k(t)^T
+            # Update term: [eta(t)v(t) - gamma(t)S(t)k(t)]k(t)^T
+            diff = eta_t * v_t - gamma_t * S_k
             update_term = torch.bmm(diff.unsqueeze(-1), k_t.unsqueeze(1))
 
-            # Memory state update
-            memory_state = gamma_t.unsqueeze(-1) * memory_state + eta_t.unsqueeze(-1) * update_term
+            # Directional memory state update (no global matrix decay)
+            memory_state = memory_state + update_term
 
             # Read from memory for output
             q_t = self.fc_q(xt)
-            q_t = F.normalize(q_t, p=2, dim=-1)
+            q_t = q_t / (torch.norm(q_t, p=2, dim=-1, keepdim=True) + 1e-8)
             read_val = torch.bmm(memory_state, q_t.unsqueeze(-1)).squeeze(-1)
 
             # Combine

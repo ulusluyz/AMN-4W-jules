@@ -5,7 +5,7 @@
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "mavi",
-        "predicted": "Sormirer",
+        "predicted": "Aleru: C",
         "correct": false
       },
       {
@@ -17,54 +17,54 @@
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "kırmızı",
-        "predicted": "Aledevde",
+        "predicted": "kareiir.",
         "correct": false
       },
       {
         "question": "Ali nerede?",
         "expected": "ev",
-        "predicted": "e evdeva",
-        "correct": true
+        "predicted": "emale?re",
+        "correct": false
       },
       {
         "question": "Ayşein kalemi ne renk?",
         "expected": "kırmızı",
-        "predicted": "kızdevdi",
+        "predicted": "eiedevde",
         "correct": false
       },
       {
         "question": "Ayşe nerede?",
         "expected": "ev",
-        "predicted": "Cere kap",
-        "correct": false
+        "predicted": "e Ayşeva",
+        "correct": true
       }
     ]
   },
   "new_knowledge": {
-    "accuracy": 0.25,
+    "accuracy": 0.0,
     "details": [
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "kırmızı",
-        "predicted": "Aledevde",
+        "predicted": "kareiir.",
         "correct": false
       },
       {
         "question": "Ali nerede?",
         "expected": "ev",
-        "predicted": "e evdeva",
-        "correct": true
+        "predicted": "emale?re",
+        "correct": false
       },
       {
         "question": "Ayşein kalemi ne renk?",
         "expected": "mavi",
-        "predicted": "Cevir. k",
+        "predicted": "Ceir. A",
         "correct": false
       },
       {
         "question": "Ayşe nerede?",
         "expected": "okul",
-        "predicted": "er. ka S",
+        "predicted": "ki Ayşe",
         "correct": false
       }
     ]
@@ -75,7 +75,7 @@
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "sarı",
-        "predicted": "Ali nkal",
+        "predicted": "evdemale",
         "correct": false
       }
     ]
