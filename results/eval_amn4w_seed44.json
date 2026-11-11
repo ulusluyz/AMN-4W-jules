@@ -1,11 +1,11 @@
 {
   "train_eval": {
-    "accuracy": 0.3333333333333333,
+    "accuracy": 0.5,
     "details": [
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "mavi",
-        "predicted": "kevdeded",
+        "predicted": "Siiin Ci",
         "correct": false
       },
       {
@@ -17,26 +17,26 @@
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "kırmızı",
-        "predicted": "r. Cemi",
+        "predicted": "Soi n k.",
         "correct": false
       },
       {
         "question": "Ali nerede?",
         "expected": "ev",
-        "predicted": "erev: ed",
+        "predicted": "evi Alev",
         "correct": true
       },
       {
         "question": "Ayşein kalemi ne renk?",
         "expected": "kırmızı",
-        "predicted": "Cedi r.",
+        "predicted": "Cevdiru:",
         "correct": false
       },
       {
         "question": "Ayşe nerede?",
         "expected": "ev",
-        "predicted": "Ali r. S",
-        "correct": false
+        "predicted": "Alevzır.",
+        "correct": true
       }
     ]
   },
@@ -46,25 +46,25 @@
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "kırmızı",
-        "predicted": "r. Cemi",
+        "predicted": "Soi n k.",
         "correct": false
       },
       {
         "question": "Ali nerede?",
         "expected": "ev",
-        "predicted": "erev: ed",
+        "predicted": "evi Alev",
         "correct": true
       },
       {
         "question": "Ayşein kalemi ne renk?",
         "expected": "mavi",
-        "predicted": "Ali kap:",
+        "predicted": "Ayşevap:",
         "correct": false
       },
       {
         "question": "Ayşe nerede?",
         "expected": "okul",
-        "predicted": "ke?evzıi",
+        "predicted": "kemali S",
         "correct": false
       }
     ]
@@ -75,7 +75,7 @@
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "sarı",
-        "predicted": "kaleii A",
+        "predicted": "kap: evd",
         "correct": false
       }
     ]

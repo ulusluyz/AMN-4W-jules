@@ -1,11 +1,11 @@
 {
   "train_eval": {
-    "accuracy": 0.3333333333333333,
+    "accuracy": 0.16666666666666666,
     "details": [
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "mavi",
-        "predicted": "Aleru: C",
+        "predicted": "re kapei",
         "correct": false
       },
       {
@@ -17,26 +17,26 @@
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "kırmızı",
-        "predicted": "kareiir.",
+        "predicted": "kap: nev",
         "correct": false
       },
       {
         "question": "Ali nerede?",
         "expected": "ev",
-        "predicted": "emale?re",
+        "predicted": "emale? A",
         "correct": false
       },
       {
         "question": "Ayşein kalemi ne renk?",
         "expected": "kırmızı",
-        "predicted": "eiedevde",
+        "predicted": "einedire",
         "correct": false
       },
       {
         "question": "Ayşe nerede?",
         "expected": "ev",
-        "predicted": "e Ayşeva",
-        "correct": true
+        "predicted": "Aledi ka",
+        "correct": false
       }
     ]
   },
@@ -46,25 +46,25 @@
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "kırmızı",
-        "predicted": "kareiir.",
+        "predicted": "kap: nev",
         "correct": false
       },
       {
         "question": "Ali nerede?",
         "expected": "ev",
-        "predicted": "emale?re",
+        "predicted": "emale? A",
         "correct": false
       },
       {
         "question": "Ayşein kalemi ne renk?",
         "expected": "mavi",
-        "predicted": "Ceir. A",
+        "predicted": "kıdir. A",
         "correct": false
       },
       {
         "question": "Ayşe nerede?",
         "expected": "okul",
-        "predicted": "ki Ayşe",
+        "predicted": "kalir.ev",
         "correct": false
       }
     ]
@@ -75,7 +75,7 @@
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "sarı",
-        "predicted": "evdemale",
+        "predicted": "eviru: C",
         "correct": false
       }
     ]

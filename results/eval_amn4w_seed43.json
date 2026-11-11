@@ -1,11 +1,11 @@
 {
   "train_eval": {
-    "accuracy": 0.3333333333333333,
+    "accuracy": 0.16666666666666666,
     "details": [
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "mavi",
-        "predicted": "nkaliink",
+        "predicted": "Cevapnev",
         "correct": false
       },
       {
@@ -17,54 +17,54 @@
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "kırmızı",
-        "predicted": "neinkali",
+        "predicted": "nenemi k",
         "correct": false
       },
       {
         "question": "Ali nerede?",
         "expected": "ev",
-        "predicted": "evdi AAl",
-        "correct": true
+        "predicted": "enkalemi",
+        "correct": false
       },
       {
         "question": "Ayşein kalemi ne renk?",
         "expected": "kırmızı",
-        "predicted": "ne Ayşed",
+        "predicted": "Cedediir",
         "correct": false
       },
       {
         "question": "Ayşe nerede?",
         "expected": "ev",
-        "predicted": "ne? kıe?",
+        "predicted": "n Aediin",
         "correct": false
       }
     ]
   },
   "new_knowledge": {
-    "accuracy": 0.25,
+    "accuracy": 0.0,
     "details": [
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "kırmızı",
-        "predicted": "neinkali",
+        "predicted": "nenemi k",
         "correct": false
       },
       {
         "question": "Ali nerede?",
         "expected": "ev",
-        "predicted": "evdi AAl",
-        "correct": true
+        "predicted": "enkalemi",
+        "correct": false
       },
       {
         "question": "Ayşein kalemi ne renk?",
         "expected": "mavi",
-        "predicted": "Ayşe n m",
+        "predicted": "Ayşı kap",
         "correct": false
       },
       {
         "question": "Ayşe nerede?",
         "expected": "okul",
-        "predicted": "ne Aedi",
+        "predicted": "nkakap:k",
         "correct": false
       }
     ]
@@ -75,7 +75,7 @@
       {
         "question": "Aliin kalemi ne renk?",
         "expected": "sarı",
-        "predicted": "Alidi Al",
+        "predicted": "Aliir. A",
         "correct": false
       }
     ]

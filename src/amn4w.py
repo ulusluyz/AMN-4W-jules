@@ -4,8 +4,8 @@ import torch.nn.functional as F
 
 class AMN4W(nn.Module):
     """
-    Independent AMN-4W Architecture with directional dynamic relational memory.
-    S(t+1) = S(t) + [eta(t)v(t) - gamma(t)S(t)k(t)]k(t)^T
+    Independent AMN-4W Architecture with requested directional relational memory.
+    S(t+1) = S(t) + [eta(t)*v(t) - ((1 - gamma(t)) + eta(t)*gamma(t)) * S(t)k(t)]k(t)^T
     """
     def __init__(self, vocab_size, embed_dim, memory_size, max_seq_len):
         super(AMN4W, self).__init__()
@@ -55,8 +55,13 @@ class AMN4W(nn.Module):
             # Reading for update step: S(t)k(t)
             S_k = torch.bmm(memory_state, k_t.unsqueeze(-1)).squeeze(-1)
 
-            # Update term: [eta(t)v(t) - gamma(t)S(t)k(t)]k(t)^T
-            diff = eta_t * v_t - gamma_t * S_k
+            # multiplier = (1 - gamma_t) + eta_t * gamma_t
+            multiplier = (1.0 - gamma_t) + (eta_t * gamma_t)
+
+            # diff = eta(t)*v(t) - multiplier * S(t)k(t)
+            diff = (eta_t * v_t) - (multiplier * S_k)
+
+            # update_term = diff * k(t)^T
             update_term = torch.bmm(diff.unsqueeze(-1), k_t.unsqueeze(1))
 
             # Directional memory state update (no global matrix decay)
