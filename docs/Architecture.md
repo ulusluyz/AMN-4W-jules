@@ -30,3 +30,7 @@ Elde edilen gerçek çıktı sonuçları:
 - AMN-4W içinde Transformer modülleri bulunmamaktadır.
 - Yeni nesne ve lokasyonlar testlerde "Unseen Patterns" olarak başarılı şekilde ayrılmıştır.
 - Tüm test sonuçları ve üretilen cevaplar `results/` klasörü içerisindedir.
+
+## Yüksek Kapasiteli Deneyler (Güncelleme)
+- AMN-4W ve Transformer daha yüksek epoch bütçesi (300 Epoch) ile sentetik veride eğitildiğinde, eğitim verisini (train_eval) ve "yeni bilgi" çıkarımını ezberlemeye başlıyor (accuracy > %50'lere ulaşıyor).
+- Ancak, bu donanım limitlerinde anlık Update yeteneğinin gerçek potansiyelini tetiklemek için dinamik bellek (state) güncellemelerinin ardışık promptlara doğru şekilde yayılması (propagate) gereklidir, bu da daha kapsamlı GPU iterasyonlarına ihtiyaç duymaktadır.
