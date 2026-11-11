@@ -16,17 +16,14 @@ def run_decay_experiment(formula_type="old_global", key_type="orthogonal", seed=
     v_target = torch.randn(1, memory_size)
     v_target = F.normalize(v_target, p=2, dim=-1)
 
-    # İlk yazma işlemi (eta=1.0, gamma=1.0)
     eta = torch.tensor([[1.0]])
     gamma = torch.tensor([[1.0]])
 
     if formula_type == "old_global":
-        # S(t+1) = gamma * S(t) + eta * [v(t) - S(t)k(t)]k(t)^T
         S_k = torch.bmm(S, k_target.unsqueeze(-1)).squeeze(-1)
         update_term = torch.bmm((v_target - S_k).unsqueeze(-1), k_target.unsqueeze(1))
         S = gamma.unsqueeze(-1) * S + eta.unsqueeze(-1) * update_term
     elif formula_type == "new_directional":
-        # S(t+1) = S(t) + [eta*v - ((1-gamma) + eta*gamma)*S(t)k]k^T
         S_k = torch.bmm(S, k_target.unsqueeze(-1)).squeeze(-1)
         multiplier = (1.0 - gamma) + (eta * gamma)
         update_term = torch.bmm((eta * v_target - multiplier * S_k).unsqueeze(-1), k_target.unsqueeze(1))
@@ -34,14 +31,12 @@ def run_decay_experiment(formula_type="old_global", key_type="orthogonal", seed=
 
     r_initial = torch.bmm(S, k_target.unsqueeze(-1)).squeeze(-1)
 
-    # Üzerine 20 yeni bilgi yazılması
     for i in range(20):
         if key_type == "orthogonal":
             k_new = torch.randn(1, memory_size)
             k_new = k_new - torch.sum(k_new * k_target) * k_target
             k_new = F.normalize(k_new, p=2, dim=-1)
         elif key_type == "similar":
-            # k_target'a biraz benzeyen rastgele vektör
             k_rand = torch.randn(1, memory_size)
             k_new = k_target + 0.5 * k_rand
             k_new = F.normalize(k_new, p=2, dim=-1)
@@ -71,18 +66,21 @@ def run_decay_experiment(formula_type="old_global", key_type="orthogonal", seed=
     mag_retention = (torch.norm(r_final) / torch.norm(r_initial)).item()
     return sim, mag_retention
 
-print("--- Eski Formül (Global Gamma Decay) ---")
-s_r, m_r = run_decay_experiment("old_global", "random")
-print(f"Rastgele Anahtarlar - CosSim: {s_r:.3f}, Büyüklük Koruma: {m_r:.3f}")
-s_o, m_o = run_decay_experiment("old_global", "orthogonal")
-print(f"Ortogonal Anahtarlar - CosSim: {s_o:.3f}, Büyüklük Koruma: {m_o:.3f}")
-s_s, m_s = run_decay_experiment("old_global", "similar")
-print(f"Benzer Anahtarlar  - CosSim: {s_s:.3f}, Büyüklük Koruma: {m_s:.3f}")
+if __name__ == "__main__":
+    for seed in [42, 43, 44]:
+        print(f"\n================ SEED {seed} ================")
+        print("--- Eski Formül (Global Gamma Decay) ---")
+        s_r, m_r = run_decay_experiment("old_global", "random", seed)
+        print(f"Rastgele Anahtarlar - CosSim: {s_r:.3f}, Büyüklük Koruma: {m_r:.3f}")
+        s_o, m_o = run_decay_experiment("old_global", "orthogonal", seed)
+        print(f"Ortogonal Anahtarlar - CosSim: {s_o:.3f}, Büyüklük Koruma: {m_o:.3f}")
+        s_s, m_s = run_decay_experiment("old_global", "similar", seed)
+        print(f"Benzer Anahtarlar  - CosSim: {s_s:.3f}, Büyüklük Koruma: {m_s:.3f}")
 
-print("\n--- Yeni Formül (Directional S(t) + ...) ---")
-s_r, m_r = run_decay_experiment("new_directional", "random")
-print(f"Rastgele Anahtarlar - CosSim: {s_r:.3f}, Büyüklük Koruma: {m_r:.3f}")
-s_o, m_o = run_decay_experiment("new_directional", "orthogonal")
-print(f"Ortogonal Anahtarlar - CosSim: {s_o:.3f}, Büyüklük Koruma: {m_o:.3f}")
-s_s, m_s = run_decay_experiment("new_directional", "similar")
-print(f"Benzer Anahtarlar  - CosSim: {s_s:.3f}, Büyüklük Koruma: {m_s:.3f}")
+        print("\n--- Yeni Formül S(t) + [eta*v - ((1-gamma) + eta*gamma)*S(t)k]k^T ---")
+        s_r, m_r = run_decay_experiment("new_directional", "random", seed)
+        print(f"Rastgele Anahtarlar - CosSim: {s_r:.3f}, Büyüklük Koruma: {m_r:.3f}")
+        s_o, m_o = run_decay_experiment("new_directional", "orthogonal", seed)
+        print(f"Ortogonal Anahtarlar - CosSim: {s_o:.3f}, Büyüklük Koruma: {m_o:.3f}")
+        s_s, m_s = run_decay_experiment("new_directional", "similar", seed)
+        print(f"Benzer Anahtarlar  - CosSim: {s_s:.3f}, Büyüklük Koruma: {m_s:.3f}")

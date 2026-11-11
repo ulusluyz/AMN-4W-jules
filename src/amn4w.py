@@ -44,35 +44,25 @@ class AMN4W(nn.Module):
             k_t = self.fc_k(xt)
             v_t = self.fc_v(xt)
 
-            # Normalizing keys and values for memory stability (with epsilon for safety)
             k_t = k_t / (torch.norm(k_t, p=2, dim=-1, keepdim=True) + 1e-8)
             v_t = v_t / (torch.norm(v_t, p=2, dim=-1, keepdim=True) + 1e-8)
 
-            # Gating mechanisms bounded between 0 and 1
             eta_t = torch.sigmoid(self.fc_eta(xt))
             gamma_t = torch.sigmoid(self.fc_gamma(xt))
 
-            # Reading for update step: S(t)k(t)
             S_k = torch.bmm(memory_state, k_t.unsqueeze(-1)).squeeze(-1)
 
-            # multiplier = (1 - gamma_t) + eta_t * gamma_t
             multiplier = (1.0 - gamma_t) + (eta_t * gamma_t)
-
-            # diff = eta(t)*v(t) - multiplier * S(t)k(t)
             diff = (eta_t * v_t) - (multiplier * S_k)
 
-            # update_term = diff * k(t)^T
             update_term = torch.bmm(diff.unsqueeze(-1), k_t.unsqueeze(1))
 
-            # Directional memory state update (no global matrix decay)
             memory_state = memory_state + update_term
 
-            # Read from memory for output
             q_t = self.fc_q(xt)
             q_t = q_t / (torch.norm(q_t, p=2, dim=-1, keepdim=True) + 1e-8)
             read_val = torch.bmm(memory_state, q_t.unsqueeze(-1)).squeeze(-1)
 
-            # Combine
             combined = torch.cat([xt, read_val], dim=-1)
             hidden = F.relu(self.fc_out1(combined))
             logits = self.fc_out2(hidden)
